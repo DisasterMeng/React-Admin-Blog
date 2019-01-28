@@ -5,18 +5,18 @@ import './style.css'
 import Http from '../../utils/Http'
 
 
-class Blog extends React.Component {
+class Category extends React.Component {
   state = {
-    blogs: [],
-    loading:false
+    tags: []
   }
 
 
   deleteHandler = (id)=>{
     console.log(id)
-    Http.post('api/v1/blog/delete',{id:id}).then(res=>{
+    
+    Http.post('api/v1/tag/delete',{id:id}).then(res=>{
       message.success("删除成功")
-      this.fetchBlogs()
+      this.fetchTags()
     })
   }
 
@@ -24,28 +24,7 @@ class Blog extends React.Component {
   columns = _ => [
     {
       title: '标题',
-      dataIndex: 'title'
-    },
-    {
-      title: '类别',
-      dataIndex: 'category.name'
-    },
-    {
-      title: '阅读量',
-      dataIndex: 'page_view'
-    },
-    {
-      title: '标签',
-      dataIndex: 'tags',
-      render: tags => (
-        <span>
-          {tags.map(tag => (
-            <Tag color="blue" key={tag.id}>
-              {tag.name}
-            </Tag>
-          ))}
-        </span>
-      )
+      dataIndex: 'name'
     },
     {
       title: '操作',
@@ -59,30 +38,29 @@ class Blog extends React.Component {
     }
   ]
 
-  fetchBlogs() {
-    this.setState({loading:true})
-    Http.get('api/v1/blog/list',{
+  fetchTags() {
+    
+    Http.get('api/v1/tag/list',{
       page_num:0,
       page_size:10
     }).then(res => {
+   
       this.setState({
-        blogs: res.data.blogs,
-        loading:false
+        tags: res.data.tags
       })
     })
   }
 
   componentDidMount() {
-    this.fetchBlogs()
+    this.fetchTags()
   }
 
   render() {
     return (
       <div>            
         <Table
-          loading={this.state.loading}
           columns={this.columns()}
-          dataSource={this.state.blogs}
+          dataSource={this.state.tags}
           rowKey={record => record.id}
         />
       </div>
@@ -90,4 +68,4 @@ class Blog extends React.Component {
   }
 }
 
-export default Blog
+export default Category

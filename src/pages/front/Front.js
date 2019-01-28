@@ -7,9 +7,16 @@ import Nav from '../menu/Menu'
 import Home from '../home/Home'
 import Friend from '../friend/Friend'
 import Image from '../image/Image'
-import Category from '../category/Category'
+
 import Blog from '../blog/Blog'
-import Add from '../blog/add/Add'
+import Add from '../blog/Add'
+
+import Category from '../category/Category'
+import CategoryAdd from '../category/Add'
+
+
+import Tag from '../tag/Tag'
+import TagAdd from '../tag/Add'
 
 
 import './style.css'
@@ -55,11 +62,21 @@ class Front extends React.Component {
           >
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route exact path='/blog' component={Blog} />
+              <Route exact path='/blog-list' component={Blog} />
+              <Route exact path="/blog-add" component={Add} />
+
+              <Route exact path='/category-list' component={Category} />
+              <Route exact path="/category-add" component={CategoryAdd} />
+
+              <Route exact path='/tag-list' component={Tag} />
+              <Route exact path="/tag-add" component={TagAdd} />
+
+
               <Route exact path='/friend' component={Friend} />
               <Route exact path='/image' component={Image} />
               <Route exact path='/category' component={Category} />
-              <Route exact path="/blog/add" component={Add} />
+
+             
             </Switch>
           </Content>
         </Layout>

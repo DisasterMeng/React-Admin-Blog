@@ -1,0 +1,25 @@
+
+
+.markdown-tool{
+      background-color: #bbb;
+      padding: 16px;
+}
+
+
+.markdown-content{
+       
+}
+
+.content-left{
+        min-height: 400px;
+        border-style: solid;
+        border-color: #bbb;
+        border-width: 0 1px 0 0 
+}
+
+
+.content-right{
+        border-style: solid;
+        border-color: #bbb;
+        border-width: 0 0 0 1px 
+}

@@ -7,14 +7,15 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        username: 'admin',
-        password: 'admin123'
+      username: 'admin',
+      password: 'admin123'
     }
   }
 
   login() {
-    Http.post('auth', {username:this.state.username,password:this.state.password}).then(res => {
+    Http.post('auth', { username: this.state.username, password: this.state.password }).then(res => {
       console.log(res)
+      this.props.history.push('/')
     })
   }
 
@@ -27,7 +28,7 @@ class Login extends React.Component {
               placeholder="用户名"
               onChange={e =>
                 this.setState({
-                    username: e.target.value
+                  username: e.target.value
                 })
               }
             />
@@ -35,7 +36,7 @@ class Login extends React.Component {
               placeholder="密码"
               onChange={e =>
                 this.setState({
-                    password: e.target.value
+                  password: e.target.value
                 })
               }
             />

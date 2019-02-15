@@ -10,13 +10,14 @@ import Image from '../image/Image'
 
 import Blog from '../blog/Blog'
 import Add from '../blog/Add'
+// import Publish from '../blog/Publish'
+
 
 import Category from '../category/Category'
 import CategoryAdd from '../category/Add'
 
 
-import Tag from '../tag/Tag'
-import TagAdd from '../tag/Add'
+import TagManage from '../tag/Manage'
 
 
 import './style.css'
@@ -24,9 +25,7 @@ import './style.css'
 const { Header, Sider, Content } = Layout
 
 class Front extends React.Component {
-  //   constructor(props) {
-  //     super(props)
-  //   }
+
 
   state = {
     collapsed: false
@@ -68,13 +67,16 @@ class Front extends React.Component {
               <Route exact path='/category-list' component={Category} />
               <Route exact path="/category-add" component={CategoryAdd} />
 
-              <Route exact path='/tag-list' component={Tag} />
-              <Route exact path="/tag-add" component={TagAdd} />
+              <Route exact path='/category' component={Category} />
+              {/* <Route exact path='/publish' component={Publish} /> */}
+
+              <Route exact path='/tag' component={TagManage} />
+
 
 
               <Route exact path='/friend' component={Friend} />
               <Route exact path='/image' component={Image} />
-              <Route exact path='/category' component={Category} />
+             
 
              
             </Switch>

@@ -35,6 +35,12 @@ class Nav extends React.Component {
         ]
       },
       {
+        id: 'publish',
+        title: '发布博客',
+        icon: 'user',
+        path: '/publish'
+      },
+      {
         id: 'category',
         title: '类别管理',
         icon: 'user',
@@ -44,21 +50,9 @@ class Nav extends React.Component {
         id: 'tag',
         title: '标签管理',
         icon: 'user',
-        subMenus: [
-          {
-            id: 'tagList',
-            title: '列表',
-            icon: 'user',
-            path: '/tag-list'
-          },
-          {
-            id: 'tagAdd',
-            title: '添加',
-            icon: 'user',
-            path: '/tag-add'
-          }
-        ]
+        path: '/tag'
       },
+      
       {
         id: 'friend',
         title: '友链管理',

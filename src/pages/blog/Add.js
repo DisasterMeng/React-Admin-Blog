@@ -1,26 +1,19 @@
 import React from 'react'
-
 import { Input, Select, Button, Form, Upload, Icon,message } from 'antd'
 
 import Http from '../../utils/Http'
 
 const Option = Select.Option
 const { TextArea } = Input
+
 class Add extends React.Component {
 
 
- 
-
-  constructor(props){
-    super(props)
-    this.state = {
-      categories: [],
-      tags: [],
-  
- 
-      fileList:[],
-      uploading:false,
-    }
+  state = {
+    categories: [],
+    tags: [],
+    fileList:[],
+    uploading:false,
   }
 
 
@@ -58,14 +51,10 @@ class Add extends React.Component {
       data["summary_img"] = getFieldValue("upload").file
     }
 
-    console.log(data)
-
     this.setState({
       uploading: true,
     });
 
-
-   
     Http.post('api/v1/blog/add', data).then(res => {
       message.success('添加博客成功')
       this.props.form.resetFields(); 
@@ -95,12 +84,12 @@ class Add extends React.Component {
     const { getFieldDecorator } = this.props.form
     const { uploading } = this.state;
     const props = {
-      action: '//jsonplaceholder.typicode.com/posts/',
+      action: '',
       onRemove: (file) => {
         this.setState(({ fileList }) => {
-          const index = fileList.indexOf(file);
-          const newFileList = fileList.slice();
-          newFileList.splice(index, 1);
+          const index = fileList.indexOf(file)
+          const newFileList = fileList.slice()
+          newFileList.splice(index, 1)
           return {
             fileList: newFileList,
           };
@@ -196,7 +185,7 @@ class Add extends React.Component {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" onClick={this.handleSubmit}>
+            <Button type="primary" loading={uploading} onClick={this.handleSubmit}>
               发布
             </Button>
           </Form.Item>

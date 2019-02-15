@@ -1,7 +1,8 @@
 import React from 'react'
 import { Table, Button, message, Modal, Form, Input } from 'antd'
-import './style.css'
+import moment from 'moment'
 
+import './style.css'
 import Http from '../../utils/Http'
 
 class Category extends React.Component {
@@ -12,7 +13,7 @@ class Category extends React.Component {
     visible: false,
     confirmLoading: false,
     action: 0,
-    checkRow:{}
+    checkRow: {}
   }
 
   columns = _ => [
@@ -22,30 +23,32 @@ class Category extends React.Component {
     },
     {
       title: '创建时间',
-      dataIndex: 'created'
+      dataIndex: 'created',
+      render: created => (<span>{moment(created).format('YYYY-MM-DD hh:mm')}</span>)
     },
-     {
+    {
       title: '修改时间',
-      dataIndex: 'modified'
+      dataIndex: 'modified',
+      render: modified => (<span>{moment(modified).format('YYYY-MM-DD hh:mm')}</span>)
     },
     {
       title: '操作',
       dataIndex: '',
-      render: id => (
+      render: row => (
         <span>
           <Button
             className="action"
             type="primary"
             shape="circle"
             icon="delete"
-            onClick={() => this.handleDelete(id)}
+            onClick={() => this.handleDelete(row)}
           />
           <Button
             className="action"
             type="primary"
             shape="circle"
             icon="edit"
-            onClick={() => this.handleUpdate(id)}
+            onClick={() => this.handleUpdate(row)}
           />
         </span>
       )
@@ -76,7 +79,7 @@ class Category extends React.Component {
       content: `是否需要删除${row.name}？`,
       okText: '确认',
       cancelText: '取消',
-      onOk:()=>{
+      onOk: () => {
         Http.post('api/v1/category/delete', { id: row.id }).then(res => {
           message.success('删除成功')
           this.fetchCategorys()
@@ -86,41 +89,41 @@ class Category extends React.Component {
   }
 
   handleAdd = () => {
-    this.setState({ visible: true, title: '添加类别', action: 0,checkRow:{} })
+    this.setState({ visible: true, title: '添加类别', action: 0, checkRow: {} })
   }
 
   handleUpdate = row => {
-    this.setState({ visible: true, title: '添加类别', action: 1,checkRow:row })
+    this.setState({ visible: true, title: '添加类别', action: 1, checkRow: row })
   }
 
   handleOk = () => {
     const { getFieldValue } = this.props.form
-    const {action,checkRow} = this.state
+    const { action, checkRow } = this.state
     const data = {
       name: getFieldValue('category')
     }
     let url = ''
-    if(action ===0){    
-     url ='api/v1/category/add'
-    }else{
+    if (action === 0) {
+      url = 'api/v1/category/add'
+    } else {
       url = 'api/v1/category/update'
       data['id'] = checkRow.id
     }
 
-    this.setState({confirmLoading:true})
+    this.setState({ confirmLoading: true })
     Http.post(url, data)
-    .then(res => {
-      message.success('操作类别成功')
-      this.setState({ visible: false,confirmLoading:false })
-      this.props.form.resetFields()
-      this.fetchCategorys()
-    })
-    .catch(err => {})
-   
+      .then(res => {
+        message.success('操作类别成功')
+        this.setState({ visible: false, confirmLoading: false })
+        this.props.form.resetFields()
+        this.fetchCategorys()
+      })
+      .catch(err => { })
+
   }
 
   render() {
-    const { visible, confirmLoading, categories, title,checkRow } = this.state
+    const { visible, confirmLoading, categories, title, checkRow } = this.state
     const { getFieldDecorator } = this.props.form
     return (
       <div>
@@ -155,7 +158,7 @@ class Category extends React.Component {
                     message: '请输入类别',
                   }
                 ],
-                initialValue:checkRow.name
+                initialValue: checkRow.name
               })(<Input />)}
             </Form.Item>
           </Form>

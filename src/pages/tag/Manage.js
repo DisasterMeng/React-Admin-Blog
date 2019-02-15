@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Button, message, Modal, Form, Input } from 'antd'
+import moment from 'moment'
 
 import './style.css'
 import Http from '../../utils/Http'
@@ -95,30 +96,32 @@ class Manage extends React.Component {
             },
             {
                 title: '创建时间',
-                dataIndex: 'created'
+                dataIndex: 'created',
+                render: created => (<span>{moment(created).format('YYYY-MM-DD hh:mm')}</span>)
             },
             {
                 title: '修改时间',
-                dataIndex: 'modified'
+                dataIndex: 'modified',
+                render: modified => (<span>{moment(modified).format('YYYY-MM-DD hh:mm')}</span>)
             },
             {
                 title: '操作',
                 dataIndex: '',
-                render: id => (
+                render: row => (
                     <span>
                         <Button
                             className="action"
                             type="primary"
                             shape="circle"
                             icon="delete"
-                            onClick={() => this.handleDelete(id)}
+                            onClick={() => this.handleDelete(row)}
                         />
                         <Button
                             className="action"
                             type="primary"
                             shape="circle"
                             icon="edit"
-                            onClick={() => this.handleUpdate(id)}
+                            onClick={() => this.handleUpdate(row)}
                         />
                     </span>
                 )

@@ -13,8 +13,8 @@ import Add from '../blog/Add'
 // import Publish from '../blog/Publish'
 
 
-import Category from '../category/Category'
-import CategoryAdd from '../category/Add'
+import CategoryManage from '../category/Manage'
+
 
 
 import TagManage from '../tag/Manage'
@@ -64,10 +64,10 @@ class Front extends React.Component {
               <Route exact path='/blog-list' component={Blog} />
               <Route exact path="/blog-add" component={Add} />
 
-              <Route exact path='/category-list' component={Category} />
-              <Route exact path="/category-add" component={CategoryAdd} />
+              {/* <Route exact path='/category-list' component={CategoryManage} /> */}
+             
 
-              <Route exact path='/category' component={Category} />
+              <Route exact path='/category' component={CategoryManage} />
               {/* <Route exact path='/publish' component={Publish} /> */}
 
               <Route exact path='/tag' component={TagManage} />

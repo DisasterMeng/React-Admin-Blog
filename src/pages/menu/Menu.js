@@ -8,7 +8,7 @@ const SubMenu = Menu.SubMenu
 class Nav extends React.Component {
   state = {
     check: 'home',
-    menus:[
+    menus: [
       {
         id: 'home',
         title: '首页',
@@ -52,7 +52,7 @@ class Nav extends React.Component {
         icon: 'user',
         path: '/tag'
       },
-      
+
       {
         id: 'friend',
         title: '友链管理',
@@ -82,45 +82,40 @@ class Nav extends React.Component {
     })
   }
 
-  router = ()=>{
-    
-    const r = (item)=>{
-      if(window.location.href.includes(item.path)){
-       this.setState({
-         check: item.id
-       })
+  matchMenu = () => {
+
+    const eachMenu = menu => {
+      if (window.location.href.includes(menu.path)) {
+        this.setState({
+          check: menu.id
+        })
       }
     }
 
-    this.state.menus.map(m=>{
-      r(m)
-      if(m.subMenus) m.subMenus.map(m=>r(m))
+    this.state.menus.forEach(menu => {
+      eachMenu(menu)
+      menu.subMenus && menu.subMenus.forEach(subMenu => eachMenu(subMenu))
     })
-   
+
   }
 
   componentWillMount() {
-    console.log(window.location.href)
-    
-
-    this.router()
-  
-  
+    this.matchMenu()
   }
 
   render() {
-   
 
-    const renderMenu=(item)=> {
+
+    const renderMenu = (item) => {
       const renderItem = item => (
         <Menu.Item key={item.id}>
           <Icon type={item.icon} />
           <span>{item.title}</span>
-          
+
           <Link to={item.path} />
         </Menu.Item>
       )
-  
+
       if (item.subMenus) {
         return (
           <SubMenu

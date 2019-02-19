@@ -5,7 +5,7 @@ import { Switch, Route, } from 'react-router-dom'
 
 import Nav from '../menu/Menu'
 import Home from '../home/Home'
-import Friend from '../friend/Friend'
+
 import Image from '../image/Image'
 
 import Blog from '../blog/Blog'
@@ -15,10 +15,8 @@ import Add from '../blog/Add'
 
 import CategoryManage from '../category/Manage'
 
-
-
 import TagManage from '../tag/Manage'
-
+import FriendManage from '../friend/Manage'
 
 import './style.css'
 
@@ -64,17 +62,15 @@ class Front extends React.Component {
               <Route exact path='/blog-list' component={Blog} />
               <Route exact path="/blog-add" component={Add} />
 
-              {/* <Route exact path='/category-list' component={CategoryManage} /> */}
-             
-
+           
+            
               <Route exact path='/category' component={CategoryManage} />
-              {/* <Route exact path='/publish' component={Publish} /> */}
+
 
               <Route exact path='/tag' component={TagManage} />
 
+              <Route exact path='/friend' component={FriendManage} />
 
-
-              <Route exact path='/friend' component={Friend} />
               <Route exact path='/image' component={Image} />
              
 

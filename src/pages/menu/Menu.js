@@ -28,7 +28,7 @@ class Nav extends React.Component {
           },
           {
             id: 'blogAdd',
-            title: '添加',
+            title: '发布博客',
             icon: 'user',
             path: '/blog-add'
           }
@@ -57,20 +57,7 @@ class Nav extends React.Component {
         id: 'friend',
         title: '友链管理',
         icon: 'user',
-        subMenus: [
-          {
-            id: 'friendList',
-            title: '列表',
-            icon: 'user',
-            path: '/friend-list'
-          },
-          {
-            id: 'friendAdd',
-            title: '添加',
-            icon: 'user',
-            path: '/friend-add'
-          }
-        ]
+        path: '/friend'
       }
     ]
   }
